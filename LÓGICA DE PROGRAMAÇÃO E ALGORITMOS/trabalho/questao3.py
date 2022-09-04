@@ -4,25 +4,28 @@ def volumeFeijoada():
         try: #Tenta executar as ações
             print('Menu Volume Feijoada')
             opcao = int(input('Entre com a quantidade que deseja(ml): '))
-            if opcao < 300: # se a a quantidade escolhida for menor que 300 retorna erro e volta pro começo do loop
+            # Verifica se a quantidade digitada esta entre 300 e 5000
+            if opcao < 300: 
                 print('Não aceitamos porções menores que 300ml ou maiores 5l. Tente novamente!')
                 continue
-            elif opcao > 5000:
+            elif opcao > 5000: 
                 print('Não aceitamos porções menores que 300ml ou maiores 5l. Tente novamente!')
                 continue
             else:
                 return opcao * 0.08
-        except ValueError:
+        except ValueError: #Disparado se o valor digitado não estiver correto
             print('Esse não é um valor aceito')
             continue
-        
+#Fim da função
 
+#Função para ver qual a opção da feijoada
 def opcaoFeijoada():
-    while True:
+    while True: #cria um loop infinito
         print('Menu Opção Feijoada')
         print('Entre com a opção de Feijoada')
-        opcao = input('b - Basica (Feijão + paiol + costelinha) \np - Premium (Feijão + paiol + costelinha + partes de porco) \ns -Suprema (Feijão + paiol + costelinha + partes do porco + charque + calabresa + bacon)')
+        opcao = input('b - Basica (Feijão + paiol + costelinha) \np - Premium (Feijão + paiol + costelinha + partes de porco) \ns -Suprema (Feijão + paiol + costelinha + partes do porco + charque + calabresa + bacon)\n')
         
+        #Verifica as opções escolhidas e retorna o multiplicador correspondente a tabela
         if opcao.upper() == 'B':
             return 1
         elif opcao.upper() == 'P':
@@ -32,13 +35,17 @@ def opcaoFeijoada():
         else:
             print('Você não digitou uma opção valida')
             continue
-        
+#Fim da função
+
+#Função que ve qual o acompanhamento da feijoada
 def acompanhamentoFeijoada():
-    valor = 0
+    valor = 0 #variavel que soma o valor dos acompanhamentos
     
     while True:
         print('Deseja mais algum acompanhamento:')
         opcao = int(input('0- Não desejo mais acompanhamentos (encerrar pedido)\n1- 200g de arroz\n2- 150g de farofa especial\n3- 100g de couve cozida\n4- 1 laranja descascada\n'))
+        
+        #Verifica a opção escolhida e soma o valor na variavel "valor", caso a opção seja 0, retorna o valor total de acompanhamento 
         if opcao == 1:
             valor = valor + 5
             continue
@@ -61,11 +68,15 @@ def acompanhamentoFeijoada():
 #programa principal
 print('Bem-vindo ao Programa de Feijoada do Pedro Henrique Serôdio de Oliveira')
 
+
+#Chama as funções e atribui as variaveis
 valorVolume = volumeFeijoada()
 valorOpcao = opcaoFeijoada()
 valorAcrescimo = acompanhamentoFeijoada()
 
+#faz o calculo do valor final da feijoada
 valorTotal = (valorVolume * valorOpcao) + valorAcrescimo
 
+#Diz pro usuarios a formula usada e os valores
 print('O valor a ser pago é R${:.2f} (volume * opcao) + acompanhamento = ({:.2f} * {:.2f}) + {:.2f}'.format(valorTotal, valorVolume, valorOpcao, valorAcrescimo))
 
